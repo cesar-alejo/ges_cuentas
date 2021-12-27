@@ -20,5 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('/cuentas', CuentaController::class);
-
 Route::get('/cusers', [CuentaController::class, 'get_users']);

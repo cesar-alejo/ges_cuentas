@@ -22,6 +22,7 @@ class CuentaController extends Controller
                 'cue.id as cuenta_id', 'cue.valor'
             )
             ->leftjoin('cuentas AS cue', 'cue.user_id', '=', 'usr.id')
+            ->orderBy('usr.id', 'asc')
             ->paginate($per_page);
         
         return response()->json($cuentas);
@@ -47,8 +48,8 @@ class CuentaController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'user_id' => 'required|min:1',
-            'valor' => 'required|min:0'
+            'user_id' => 'required|numeric|min:1',
+            'valor' => 'required|numeric|min:0'
         ]);
 
         $cuenta = Cuenta::create($request->all());

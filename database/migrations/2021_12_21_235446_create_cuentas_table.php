@@ -17,6 +17,7 @@ class CreateCuentasTable extends Migration
             $table->id();
             $table->integer('valor');
             $table->integer('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
